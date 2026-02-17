@@ -1,0 +1,349 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>نافس - طموح وطن وتميز جيل</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&display=swap');
+    * { font-family: 'Tajawal', sans-serif; }
+    html, body { height: 100%; }
+    .slide-in { animation: slideIn 0.5s ease-out; }
+    @keyframes slideIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+    .option-hover:hover { background-color: #fdf2f8; border-color: #ec4899; transform: scale(1.01); }
+    .ranking-item { display: flex; align-items: center; padding: 12px; background: white; border-radius: 12px; border-right: 5px solid #a78bfa; margin-bottom: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+  </style>
+ </head>
+ <body class="bg-gradient-to-b from-indigo-100 via-purple-50 to-pink-100 h-full m-0 p-0 text-right">
+  
+  <div id="app" class="w-full h-full overflow-auto">
+    <div id="mainContent" class="min-h-full flex flex-col">
+      <header class="bg-gradient-to-l from-emerald-500 to-teal-600 text-white shadow-xl p-4 sticky top-0 z-50">
+        <div class="max-w-2xl mx-auto">
+          <div class="bg-white/20 rounded-xl p-3 backdrop-blur-md mb-3 text-center slide-in">
+            <p class="text-sm font-bold leading-relaxed">🎯 "هدفنا أن يحصل كل طفل سعودي على فرص التعلم الجيد"<br>
+            <span class="text-xs opacity-90">برنامج تنمية القدرات البشرية - نافس</span></p>
+          </div>
+          <h1 class="text-2xl font-black text-center mb-2">نافس - المهارات الرياضية</h1>
+          <p class="text-center text-sm font-bold bg-black/10 rounded-full py-1">المعلمة: <span class="text-yellow-300">هنادي خلف السلمي</span></p>
+          
+          <div class="grid grid-cols-3 gap-2 mt-4">
+            <div class="bg-white/10 rounded-lg p-2 text-center text-[10px]">الزيارات<p id="visitCount" class="text-xl font-black">0</p></div>
+            <div class="bg-white/10 rounded-lg p-2 text-center text-[10px]">الأعلى نقاطاً<p id="lastVisitor" class="text-[10px] font-bold truncate">-</p></div>
+            <div id="starsBox" class="bg-white/10 rounded-lg p-2 text-center text-[10px] cursor-pointer active:bg-white/20">إجمالي النجوم<p id="totalStars" class="text-xl font-black">0</p></div>
+          </div>
+        </div>
+      </header>
+
+      <main class="flex-1 p-4">
+        <div class="max-w-2xl mx-auto">
+          
+          <section id="homeScreen" class="slide-in">
+            <div id="loginBox" class="bg-white rounded-3xl shadow-xl p-6 border-b-8 border-purple-400 mb-6">
+              <h2 class="text-2xl font-black text-purple-800 text-center mb-4">🎮 استعد للتحدي!</h2>
+              <input id="studentNameInput" type="text" placeholder="أدخل اسمك الثلاثي..." class="w-full px-4 py-4 rounded-2xl border-2 border-purple-100 focus:border-purple-500 outline-none text-lg font-bold text-center mb-4">
+              <button id="btnStartQuiz" class="w-full bg-purple-600 text-white py-4 rounded-2xl font-black text-xl shadow-lg active:scale-95 transition-transform">انطلق الآن! 🚀</button>
+            </div>
+
+            <div id="quizSelection" class="hidden space-y-4">
+              <h3 class="text-center font-black text-purple-900 text-lg py-2">اختر مجال التحدي:</h3>
+              <div class="grid grid-cols-1 gap-4 pb-10">
+                <div class="bg-emerald-50 p-4 rounded-2xl border-2 border-emerald-200">
+                  <h4 class="font-black text-emerald-700 mb-3 flex items-center">🔢 الأعداد والعمليات</h4>
+                  <div class="flex gap-2">
+                    <button class="quizBtn flex-1 bg-emerald-500 text-white py-2 rounded-xl text-xs font-bold" data-domain="numbers" data-level="مبتدئ">تأسيس</button>
+                    <button class="quizBtn flex-1 bg-emerald-600 text-white py-2 rounded-xl text-xs font-bold" data-domain="numbers" data-level="متوسط">تمكين</button>
+                    <button class="quizBtn flex-1 bg-emerald-700 text-white py-2 rounded-xl text-xs font-bold" data-domain="numbers" data-level="متقدم">تحليق</button>
+                  </div>
+                </div>
+                <div class="bg-blue-50 p-4 rounded-2xl border-2 border-blue-200">
+                  <h4 class="font-black text-blue-700 mb-3 flex items-center">📈 الجبر والأنماط</h4>
+                  <div class="flex gap-2">
+                    <button class="quizBtn flex-1 bg-blue-500 text-white py-2 rounded-xl text-xs font-bold" data-domain="algebra" data-level="مبتدئ">تأسيس</button>
+                    <button class="quizBtn flex-1 bg-blue-600 text-white py-2 rounded-xl text-xs font-bold" data-domain="algebra" data-level="متوسط">تمكين</button>
+                    <button class="quizBtn flex-1 bg-blue-700 text-white py-2 rounded-xl text-xs font-bold" data-domain="algebra" data-level="متقدم">تحليق</button>
+                  </div>
+                </div>
+                <div class="bg-orange-50 p-4 rounded-2xl border-2 border-orange-200">
+                  <h4 class="font-black text-orange-700 mb-3 flex items-center">📏 الهندسة والقياس</h4>
+                  <div class="flex gap-2">
+                    <button class="quizBtn flex-1 bg-orange-500 text-white py-2 rounded-xl text-xs font-bold" data-domain="geometry" data-level="مبتدئ">تأسيس</button>
+                    <button class="quizBtn flex-1 bg-orange-600 text-white py-2 rounded-xl text-xs font-bold" data-domain="geometry" data-level="متوسط">تمكين</button>
+                    <button class="quizBtn flex-1 bg-orange-700 text-white py-2 rounded-xl text-xs font-bold" data-domain="geometry" data-level="متقدم">تحليق</button>
+                  </div>
+                </div>
+                <div class="bg-purple-50 p-4 rounded-2xl border-2 border-purple-200">
+                  <h4 class="font-black text-purple-700 mb-3 flex items-center">📊 الإحصاء والاحتمالات</h4>
+                  <div class="flex gap-2">
+                    <button class="quizBtn flex-1 bg-purple-500 text-white py-2 rounded-xl text-xs font-bold" data-domain="stats" data-level="مبتدئ">تأسيس</button>
+                    <button class="quizBtn flex-1 bg-purple-600 text-white py-2 rounded-xl text-xs font-bold" data-domain="stats" data-level="متوسط">تمكين</button>
+                    <button class="quizBtn flex-1 bg-purple-700 text-white py-2 rounded-xl text-xs font-bold" data-domain="stats" data-level="متقدم">تحليق</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-8 bg-white/60 backdrop-blur-sm rounded-3xl p-6 border-2 border-purple-200">
+              <h3 class="text-xl font-black text-center text-purple-900 mb-4 text-sm uppercase tracking-widest">🏆 أبطال نافس</h3>
+              <div id="allStudentsRanking" class="space-y-2"></div>
+              <button id="adminResetBtn" onclick="clearSystemData()" class="hidden w-full mt-4 text-[10px] text-red-500 underline py-2 bg-red-50 rounded-lg">إعادة ضبط البيانات (للمعلمة)</button>
+            </div>
+          </section>
+
+          <section id="quizScreen" class="hidden slide-in pb-10">
+            <div class="flex items-center justify-between mb-4 bg-white p-4 rounded-2xl shadow-sm border border-emerald-100">
+              <h2 id="quizTitle" class="font-black text-emerald-800 text-sm"></h2>
+              <button onclick="location.reload()" class="text-xs font-bold text-red-500 bg-red-50 px-3 py-1 rounded-full">انسحاب</button>
+            </div>
+            <div id="questionsContainer" class="space-y-6"></div>
+            <button id="btnSubmitQuiz" class="w-full mt-8 bg-emerald-600 text-white py-4 rounded-2xl font-black text-xl shadow-lg hover:bg-emerald-700">إرسال الإجابات ✅</button>
+          </section>
+
+          <section id="resultsScreen" class="hidden slide-in text-center">
+            <div class="bg-white rounded-3xl shadow-2xl p-8 border-t-8 border-yellow-400">
+              <div class="text-7xl mb-4">🌟</div>
+              <h2 class="text-2xl font-black text-purple-900 mb-2">كفو يا بطل/ة!</h2>
+              <p id="resultName" class="text-lg font-bold text-purple-600 mb-6"></p>
+              <div class="grid grid-cols-2 gap-4 mb-8">
+                <div class="bg-purple-50 p-4 rounded-2xl border border-purple-100">
+                  <p class="text-[10px] text-gray-500 font-bold mb-1">الدرجة</p>
+                  <p id="scoreDisplay" class="text-2xl font-black text-purple-700"></p>
+                </div>
+                <div class="bg-yellow-50 p-4 rounded-2xl border border-yellow-100">
+                  <p class="text-[10px] text-gray-500 font-bold mb-1">النجوم المكتسبة</p>
+                  <div id="starsDisplay" class="text-xl"></div>
+                </div>
+              </div>
+              <button id="btnBackHome" class="w-full bg-emerald-600 text-white py-4 rounded-2xl font-bold shadow-md mb-3">🏆 لوحة الصدارة</button>
+              <button id="btnTakeAnother" class="w-full bg-blue-600 text-white py-4 rounded-2xl font-bold shadow-md">🔁 مهارة أخرى</button>
+            </div>
+          </section>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-database-compat.js"></script>
+
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyCnKMPDckU-XmZpblUkV55Im6tYa_VAxT0",
+      authDomain: "nafisproject-48aa3.firebaseapp.com",
+      databaseURL: "https://nafisproject-48aa3-default-rtdb.europe-west1.firebasedatabase.app",
+      projectId: "nafisproject-48aa3",
+      storageBucket: "nafisproject-48aa3.firebasestorage.app",
+      messagingSenderId: "12586578618",
+      appId: "1:12586578618:web:376568ddf058b278b94883",
+      measurementId: "G-BSN3X12HB1"
+    };
+    firebase.initializeApp(firebaseConfig);
+    const database = firebase.database();
+
+const questions = {
+      numbers: { // الأعداد والعمليات (15 سؤال)
+        مبتدئ: [
+          { q: "في رحلة مدرسية، ركب ٤٣ طالباً في الحافلة الأولى و ٣٠ طالباً في الثانية. ما 'تقدير' مجموعهم لأقرب عشرة؟", options: ["٧٠", "٨٠", "٦٠", "٩٠"], correct: 0 },
+          { q: "كتبت ريم عدداً يحتوي على ٤ في العشرات، ٢ في المئات، و ٥ في الآحاد. ما هو العدد؟", options: ["٤٢٥", "٢٤٥", "٥٤٢", "٢٥٤"], correct: 1 },
+          { q: "أي الأعداد التالية يمثل الصيغة التحليلية ( ٦ + ٨٠ + ٥٠٠ )؟", options: ["٦٨٥", "٥٨٦", "٨٥٦", "٥٦٨"], correct: 1 },
+          { q: "قارن بين العددين: ٧٨٩ (...) ٧٩٨", options: [">", "<", "=", "غير ذلك"], correct: 1 },
+          { q: "ما القيمة المنزلية للرقم ٩ في العدد ٩٤٢؟", options: ["٩", "٩٠", "٩٠٠", "٩٠٠٠"], correct: 2 }
+        ],
+        متوسط: [
+          { q: "اشترت المدرسة ٥ صناديق أقلام، في كل صندوق ١٠ أقلام. وزعت المعلمة ٢٥ قلماً، كم بقي؟", options: ["١٥", "٢٥", "٣٥", "٥٠"], correct: 1 },
+          { q: "مع خالد ٧٥ ريالاً، اشترى قصة بـ ١٥ ريالاً وعلبة ألوان بـ ٢٠ ريالاً. كم ريالاً بقي معه؟", options: ["٣٥", "٤٠", "٤٥", "٥٠"], correct: 1 },
+          { q: "أي من الأعداد التالية هو عدد 'زوجي'؟", options: ["١٣", "٢٥", "٤٨", "٣٧"], correct: 2 },
+          { q: "ناتج جمع ٣٤٢ + ١٢٥ هو:", options: ["٤٦٧", "٤٥٧", "٤٧٦", "٣٦٧"], correct: 0 },
+          { q: "لدى أحمد ٣ مجموعات من الطوابع، في كل مجموعة ٩ طوابع. ما مجموع طوابعه؟", options: ["١٢", "٢٤", "٢٧", "٣٠"], correct: 2 }
+        ],
+        متقدم: [
+          { q: "وزع أب ٤٨ ريالاً على أبنائه الستة بالتساوي. أي حقيقة ضرب تساعدك على الحل؟", options: ["٦×٧=٤٢", "٦×٨=٤٨", "٦×٦=٣٦", "٦×٩=٥٤"], correct: 1 },
+          { q: "قطار فيه ٨ عربات، في كل عربة ١٠ ركاب. في المحطة الأولى نزل ١٥ راكباً. كم راكباً بقي؟", options: ["٧٥", "٦٥", "٥٥", "٨٠"], correct: 1 },
+          { q: "ما ناتج قسمة ٤٠ ÷ ٥؟", options: ["٦", "٧", "٨", "٩"], correct: 2 },
+          { q: "إذا كان ناتج ضرب ٤ × ٩ = ٣٦، فما ناتج ٤٠ × ٩؟", options: ["٣٦٠", "٣٦٠٠", "٣٦", "٤٠٠"], correct: 0 },
+          { q: "رتب الأعداد تزايدياً: ٣٤٥ ، ٢١٠ ، ٥٠٠", options: ["٥٠٠،٣٤٥،٢١٠", "٢١٠،٣٤٥،٥٠٠", "٣٤٥،٢١٠،٥٠٠", "٢١٠،٥٠٠،٣٤٥"], correct: 1 }
+        ]
+      },
+      algebra: { // الجبر والأنماط (15 سؤال)
+        مبتدئ: [
+          { q: "ما العدد التالي في النمط: ١٠، ١٥، ٢٠، ٢٥، ؟", options: ["٢٦", "٣٠", "٣٥", "٤٠"], correct: 1 },
+          { q: "في النمط ( ٢، ٤، ٦، ٨ ) القاعدة هي:", options: ["إضافة ١", "إضافة ٢", "طرح ٢", "إضافة ٣"], correct: 1 },
+          { q: "أكمل الجملة: ٥ + ٨ = ٨ + ...", options: ["٥", "٨", "١٣", "٠"], correct: 0 },
+          { q: "العدد المفقود في النمط ( ٥٠، ٦٠، ...، ٨٠ ) هو:", options: ["٦٥", "٧٠", "٧٥", "٩٠"], correct: 1 },
+          { q: "إذا كانت ٧ + ٣ = ١٠، فإن ١٠ - ٣ = ...", options: ["٣", "٧", "١٠", "٥"], correct: 1 }
+        ],
+        متوسط: [
+          { q: "أي الجمل التالية توضح خاصية 'الإبدال' في الجمع؟", options: ["٥+٠=٥", "٥+٣=٣+٥", "٥+١=٦", "٢+٢+٢=٦"], correct: 1 },
+          { q: "إذا كان ( □ + ٦ = ١٠ )، فما قيمة □؟", options: ["٣", "٤", "٥", "٦"], correct: 1 },
+          { q: "ما العدد الذي يجعل الجملة صحيحة: ٩ - ... = ٤؟", options: ["٣", "٤", "٥", "٦"], correct: 2 },
+          { q: "تنمو نبتة ٢ سم كل يوم. إذا كان طولها اليوم ١٠ سم، فكم طولها بعد ٣ أيام؟", options: ["١٢", "١٤", "١٦", "١٨"], correct: 2 },
+          { q: "أكمل النمط: ٨٠، ٧٠، ٦٠، ...", options: ["٥٠", "٤٠", "٥٥", "٦٥"], correct: 0 }
+        ],
+        متقدم: [
+          { q: "في النمط ( ٥٠، ٤٦، ٤٢، ٣٨ )، ما هي القاعدة المتبعة؟", options: ["زيادة ٤", "طرح ٤", "طرح ٢", "طرح ٦"], correct: 1 },
+          { q: "إذا كان ( ٣ × □ = ١٢ ) و ( □ + ٥ = ٩ )، فإن □ هي:", options: ["٣", "٤", "٥", "٦"], correct: 1 },
+          { q: "ما القاعدة في هذا الجدول (المدخلة ٤ صارت ٨)، (المدخلة ٥ صارت ١٠)؟", options: ["إضافة ٤", "ضرب ٢", "طرح ٢", "قسمة ٢"], correct: 1 },
+          { q: "العد القفزي ( ٣، ٦، ٩، ١٢ ) يمثل جدول ضرب العدد:", options: ["٢", "٣", "٤", "٥"], correct: 1 },
+          { q: "أي جملة عددية تمثل (لدى أحمد ٥ سيارات وأعطاه والده ٣ سيارات فأصبح لديه ٨)؟", options: ["٥-٣=٢", "٥+٣=٨", "٨-٥=٣", "٣+٥=٨"], correct: 1 }
+        ]
+      },
+      geometry: { // الهندسة والقياس (15 سؤال)
+        مبتدئ: [
+          { q: "رسمت نورة شكلاً له ٤ أضلاع متطابقة و ٤ زوايا قائمة. ما هو؟", options: ["المثلث", "المربع", "الدائرة", "المخروط"], correct: 1 },
+          { q: "كم وجهاً للمكعب؟", options: ["٤", "٥", "٦", "٨"], correct: 2 },
+          { q: "الشكل الذي ليس له أضلاع ولا رؤوس هو:", options: ["المربع", "المستطيل", "الدائرة", "المثلث"], correct: 2 },
+          { q: "وحدة القياس المناسبة لقياس طول قلم الرصاص هي:", options: ["المتر", "السنتيمتر", "الكيلومتر", "اللتر"], correct: 1 },
+          { q: "كم رأساً للمثلث؟", options: ["٢", "٣", "٤", "٠"], correct: 1 }
+        ],
+        متوسط: [
+          { q: "يريد فهد بناء سور حول حديقة مربعة طول ضلعها ٦ أمتار. كم طول السور بالكامل؟", options: ["١٢م", "١٨م", "٢٤م", "٣٦م"], correct: 2 },
+          { q: "الساعة تشير إلى الثالثة تماماً. كم يكون الوقت بعد مرور ٣٠ دقيقة؟", options: ["٣:١٥", "٣:٣٠", "٤:٠٠", "٣:٤٥"], correct: 1 },
+          { q: "أي المجسمات التالية يشبه علبة الدهان؟", options: ["الكرة", "المخروط", "الأسطوانة", "المكعب"], correct: 2 },
+          { q: "المستطيل له أربعة أضلاع، كل ضلعين متقابلين فيه:", options: ["مختلفان", "متطابقان", "منحنيان", "لا شيء"], correct: 1 },
+          { q: "وحدة القياس المناسبة لسعة علبة عصير صغيرة هي:", options: ["اللتر", "المليلتر", "المتر", "الجرام"], correct: 1 }
+        ],
+        متقدم: [
+          { q: "أي المجسمات التالية له وجه واحد دائري ورأس واحد؟", options: ["الكرة", "المخروط", "الأسطوانة", "الهرم"], correct: 1 },
+          { q: "إذا كان طول دفتر ٢٠ سم، فكم يكون طول دفترين وضعهما محمد بجانب بعضهما؟", options: ["٢٠ سم", "٣٠ سم", "٤٠ سم", "٥٠ سم"], correct: 2 },
+          { q: "بدأت الحصة الساعة ٨:٠٠ وانتهت ٨:٤٥. كم مدة الحصة؟", options: ["٣٠ دقيقة", "٤٥ دقيقة", "٦٠ دقيقة", "١٥ دقيقة"], correct: 1 },
+          { q: "محيط مثلث أطوال أضلاعه ٣ سم، ٤ سم، ٥ سم هو:", options: ["٧ سم", "٩ سم", "١٢ سم", "١٥ سم"], correct: 2 },
+          { q: "كم شهراً في السنة الميلادية؟", options: ["١٠", "١١", "١٢", "١٣"], correct: 2 }
+        ]
+      },
+      stats: { // الإحصاء والاحتمالات (15 سؤال)
+        مبتدئ: [
+          { q: "في كيس ٧ كرات بيضاء فقط. سحبنا كرة، ما احتمال أن تكون سوداء؟", options: ["أكيد", "ممكن", "مستحيل", "أقل احتمالاً"], correct: 2 },
+          { q: "عند رمي مكعب أرقام (١-٦)، ما احتمال ظهور الرقم ٧؟", options: ["أكيد", "ممكن", "مستحيل", "ضعيف"], correct: 2 },
+          { q: "في تمثيل بالصور، إذا كانت كل صورة (⭐) تمثل طفلين، فما عدد الأطفال عند وجود ٣ نجوم؟", options: ["٣", "٤", "٥", "٦"], correct: 3 },
+          { q: "أي الكلمات تصف احتمال شروق الشمس من الشرق غداً؟", options: ["مستحيل", "أكيد", "ضعيف", "ممكن"], correct: 1 },
+          { q: "في جدول الإشارات، تمثل الحزمة (卌) العدد:", options: ["٣", "٤", "٥", "٦"], correct: 2 }
+        ],
+        متوسط: [
+          { q: "تمثيل يوضح أن ٦ طلاب يفضلون الرسم و ٣ يفضلون القراءة. كم يزيد عدد محبي الرسم؟", options: ["٢", "٣", "٤", "٩"], correct: 1 },
+          { q: "في كيس ٥ كرات حمراء وكرتان زرقاء. سحبنا كرة، الاحتمال 'الأكثر' هو اللون:", options: ["الأحمر", "الأزرق", "الأصفر", "الأبيض"], correct: 0 },
+          { q: "إذا دورت مؤشر قرص نصفه أحمر ونصفه أزرق، فإن احتمال الوقوف على الأحمر هو:", options: ["أكيد", "مستحيل", "متساوي الإمكانية", "ضعيف"], correct: 2 },
+          { q: "تم سؤال ١٠ طلاب عن فاكهتهم المفضلة، ٧ اختاروا الموز. كم طالباً لم يختاروا الموز؟", options: ["١", "٢", "٣", "٤"], correct: 2 },
+          { q: "التمثيل بالأعمدة يستخدم ... لعرض البيانات.", options: ["الصور", "الإشارات", "الأعمدة", "النقاط"], correct: 2 }
+        ],
+        متقدم: [
+          { q: "عند تدوير مؤشر قرص مقسم لـ ٤ ألوان متساوية، احتمال وقوفه على لون واحد هو:", options: ["مؤكد", "مستحيل", "تساوي الفرص", "أكثر احتمالاً"], correct: 2 },
+          { q: "إذا كان هناك ٤ كرات خضراء وكرة واحدة صفراء، فما احتمال سحب كرة خضراء؟", options: ["أقل احتمالاً", "أكثر احتمالاً", "مستحيل", "مؤكد"], correct: 1 },
+          { q: "تمثيل بالنقاط يظهر ٥ إشارات فوق الرقم ١٠، هذا يعني أن الرقم ١٠ تكرر:", options: ["مرتين", "٣ مرات", "٥ مرات", "١٠ مرات"], correct: 2 },
+          { q: "أي الأشكال التالية يستخدم لتمثيل البيانات باستخدام الصور؟", options: ["الأعمدة", "الصور", "الإشارات", "الدوائر"], correct: 1 },
+          { q: "عند رمي قطعة نقدية، ما هو احتمال ظهور 'الشعار'؟", options: ["مؤكد", "مستحيل", "متساوي الإمكانية", "ضعيف"], correct: 2 }
+        ]
+      }
+    };
+
+    const domainNames = { numbers: "الأعداد", algebra: "الجبر", geometry: "الهندسة", stats: "الإحصاء" };
+    let currentStudent = null, allStudents = [], currentQuiz = null, userAnswers = {}, teacherClicks = 0;
+
+    function init() {
+      let v = parseInt(localStorage.getItem('visitCount') || '0') + 1;
+      localStorage.setItem('visitCount', v);
+      document.getElementById('visitCount').textContent = v;
+
+      database.ref('students').on('value', (snapshot) => {
+        allStudents = snapshot.val() ? Object.values(snapshot.val()) : [];
+        updateLeaderboard();
+        updateStats();
+      });
+
+      document.getElementById('starsBox').addEventListener('click', () => {
+        teacherClicks++;
+        if(teacherClicks === 3) {
+          document.getElementById('adminResetBtn').classList.toggle('hidden');
+          alert('تم تفعيل وضع المعلمة 🛠️');
+          teacherClicks = 0;
+        }
+      });
+    }
+
+    function updateStats() {
+      const ts = allStudents.reduce((sum, s) => sum + (s.total_score || 0), 0);
+      document.getElementById('totalStars').textContent = ts;
+      if (allStudents.length > 0) {
+        const sorted = [...allStudents].sort((a,b) => b.total_score - a.total_score);
+        document.getElementById('lastVisitor').textContent = sorted[0].student_name;
+      }
+    }
+
+    function updateLeaderboard() {
+      const container = document.getElementById('allStudentsRanking');
+      const sorted = [...allStudents].sort((a,b) => b.total_score - a.total_score);
+      if (sorted.length === 0) { container.innerHTML = '<p class="text-center text-gray-400 text-xs italic">لا توجد نتائج، كن الأول!</p>'; return; }
+      container.innerHTML = sorted.slice(0, 5).map((s, i) => `
+        <div class="ranking-item slide-in">
+          <span class="w-7 h-7 flex items-center justify-center bg-purple-100 rounded-full text-purple-700 font-black ml-3 text-xs">${i + 1}</span>
+          <div class="flex-1 text-sm font-bold text-gray-700">${s.student_name}</div>
+          <div class="text-emerald-600 font-bold text-sm">${s.total_score} ⭐</div>
+        </div>
+      `).join('');
+    }
+
+    document.getElementById('btnStartQuiz').addEventListener('click', () => {
+      const name = document.getElementById('studentNameInput').value.trim();
+      if (name.length < 4) return alert('بطلنا.. اكتب اسمك الثلاثي!');
+      currentStudent = name;
+      document.getElementById('loginBox').classList.add('hidden');
+      document.getElementById('quizSelection').classList.remove('hidden');
+    });
+
+    document.querySelectorAll('.quizBtn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        currentQuiz = { domain: btn.dataset.domain, level: btn.dataset.level };
+        userAnswers = {};
+        document.getElementById('homeScreen').classList.add('hidden');
+        document.getElementById('quizScreen').classList.remove('hidden');
+        document.getElementById('quizTitle').textContent = `${domainNames[currentQuiz.domain]} - مستوى ${currentQuiz.level}`;
+        const qData = questions[currentQuiz.domain][currentQuiz.level];
+        document.getElementById('questionsContainer').innerHTML = qData.map((q, i) => `
+          <div class="bg-white p-6 rounded-3xl shadow-sm border border-purple-50">
+            <p class="font-black text-purple-900 mb-5 leading-relaxed text-md">${i+1}. ${q.q}</p>
+            <div class="space-y-3">
+              ${q.options.map((opt, oi) => `
+                <label class="flex items-center p-4 rounded-2xl border-2 border-gray-100 option-hover cursor-pointer transition-all">
+                  <input type="radio" name="q${i}" value="${oi}" class="w-5 h-5 accent-emerald-600" onchange="userAnswers[${i}]=${oi}">
+                  <span class="mr-3 font-bold text-gray-700 text-sm">${opt}</span>
+                </label>
+              `).join('')}
+            </div>
+          </div>
+        `).join('');
+      });
+    });
+
+    document.getElementById('btnSubmitQuiz').addEventListener('click', async () => {
+      const qData = questions[currentQuiz.domain][currentQuiz.level];
+      if (Object.keys(userAnswers).length < qData.length) return alert('أكمل الحل يا بطل!');
+      let score = 0; qData.forEach((q, i) => { if (userAnswers[i] === q.correct) score++; });
+      let existing = allStudents.find(s => s.student_name === currentStudent);
+      let newScore = (existing ? existing.total_score : 0) + score;
+      const safeName = currentStudent.replace(/[.#$[\]]/g, "_");
+      await database.ref('students/' + safeName).set({ student_name: currentStudent, total_score: newScore });
+      document.getElementById('quizScreen').classList.add('hidden');
+      document.getElementById('resultsScreen').classList.remove('hidden');
+      document.getElementById('resultName').textContent = currentStudent;
+      document.getElementById('scoreDisplay').textContent = `${score} / ${qData.length}`;
+      document.getElementById('starsDisplay').innerHTML = '⭐'.repeat(score || 1);
+    });
+
+    document.getElementById('btnBackHome').addEventListener('click', () => location.reload());
+    document.getElementById('btnTakeAnother').addEventListener('click', () => {
+      document.getElementById('resultsScreen').classList.add('hidden');
+      document.getElementById('homeScreen').classList.remove('hidden');
+      document.getElementById('quizSelection').classList.remove('hidden');
+    });
+
+    function clearSystemData() {
+      if (prompt("كلمة مرور الإدارة:") === "1234") {
+        if(confirm('سيتم حذف كافة النتائج، هل أنتِ متأكدة؟')) {
+          database.ref('students').remove().then(() => location.reload());
+        }
+      } else { alert("رمز خاطئ!"); }
+    }
+    init();
+  </script>
+ </body>
+</html>
