@@ -1,0 +1,298 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>نافس - طموح وطن وتميز جيل</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&display=swap');
+    * { font-family: 'Tajawal', sans-serif; }
+    html, body { height: 100%; }
+    .slide-in { animation: slideIn 0.5s ease-out; }
+    @keyframes slideIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+    .option-hover:hover { background-color: #fdf2f8; border-color: #ec4899; transform: scale(1.01); }
+    .ranking-item { display: flex; align-items: center; padding: 12px; background: white; border-radius: 12px; border-right: 5px solid #a78bfa; margin-bottom: 8px; }
+  </style>
+ </head>
+ <body class="bg-gradient-to-b from-indigo-100 via-purple-50 to-pink-100 h-full m-0 p-0 text-right">
+  
+  <div id="app" class="w-full h-full overflow-auto">
+    <div id="mainContent" class="min-h-full flex flex-col">
+      <header class="bg-gradient-to-l from-emerald-500 to-teal-600 text-white shadow-xl p-4 sticky top-0 z-50">
+        <div class="max-w-2xl mx-auto">
+          <div class="bg-white/20 rounded-xl p-3 backdrop-blur-md mb-3 text-center slide-in">
+            <p class="text-sm font-bold leading-relaxed">🎯 "هدفنا أن يحصل كل طفل سعودي على فرص التعلم الجيد وفق خيارات متنوعة"<br>
+            <span class="text-xs opacity-90">سمو ولي العهد الأمير محمد بن سلمان حفظه الله</span></p>
+          </div>
+          <h1 id="appTitle" class="text-2xl font-black text-center mb-2">نافس - طموح وطن</h1>
+          <p class="text-center text-sm font-bold bg-black/10 rounded-full py-1">المعلمة: <span id="teacherName" class="text-yellow-300">هنادي خلف السلمي</span></p>
+          
+          <div class="grid grid-cols-3 gap-2 mt-4">
+            <div class="bg-white/10 rounded-lg p-2 text-center">
+              <p class="text-[10px] uppercase">الزيارات</p>
+              <p id="visitCount" class="text-xl font-black">0</p>
+            </div>
+            <div class="bg-white/10 rounded-lg p-2 text-center">
+              <p class="text-[10px] uppercase">الأعلى نقاطاً</p>
+              <p id="lastVisitor" class="text-xs font-bold truncate">-</p>
+            </div>
+            <div id="starsBox" class="bg-white/10 rounded-lg p-2 text-center cursor-pointer active:bg-white/20">
+              <p class="text-[10px] uppercase">إجمالي النجوم</p>
+              <p id="totalStars" class="text-xl font-black">0</p>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <main class="flex-1 p-4">
+        <div class="max-w-2xl mx-auto">
+          
+          <section id="homeScreen" class="slide-in">
+            <div id="loginBox" class="bg-white rounded-3xl shadow-xl p-6 border-b-8 border-purple-400 mb-6">
+              <h2 class="text-2xl font-black text-purple-800 text-center mb-4">🎮 استعد للتحدي!</h2>
+              <div class="space-y-4">
+                <div>
+                  <label class="block text-sm font-bold text-gray-600 mb-1 mr-1">اسم البطل:</label>
+                  <input id="studentNameInput" type="text" placeholder="أدخل اسمك الثلاثي..." class="w-full px-4 py-3 rounded-2xl border-2 border-purple-100 focus:border-purple-500 outline-none text-lg font-bold">
+                </div>
+                <button id="btnStartQuiz" class="w-full bg-purple-600 hover:bg-purple-700 text-white py-4 rounded-2xl font-black text-xl transition-transform active:scale-95 shadow-lg">انطلق الآن! 🚀</button>
+              </div>
+            </div>
+
+            <div id="quizSelection" class="hidden space-y-4">
+              <h3 class="text-center font-black text-purple-900 text-xl py-2">اختر مجالك المفضل:</h3>
+              <div id="domainGrid" class="grid grid-cols-1 gap-4 pb-10">
+                <div class="bg-emerald-50 p-4 rounded-2xl border-2 border-emerald-200">
+                  <h4 class="font-black text-emerald-700 mb-3">🔢 الأعداد والعمليات</h4>
+                  <div class="flex gap-2">
+                    <button class="quizBtn flex-1 bg-emerald-500 text-white py-2 rounded-xl text-sm font-bold" data-domain="numbers" data-level="مبتدئ">مبتدئ</button>
+                    <button class="quizBtn flex-1 bg-emerald-600 text-white py-2 rounded-xl text-sm font-bold" data-domain="numbers" data-level="متوسط">متوسط</button>
+                    <button class="quizBtn flex-1 bg-emerald-700 text-white py-2 rounded-xl text-sm font-bold" data-domain="numbers" data-level="متقدم">متقدم</button>
+                  </div>
+                </div>
+                <div class="bg-blue-50 p-4 rounded-2xl border-2 border-blue-200">
+                  <h4 class="font-black text-blue-700 mb-3">📐 الجبر والأنماط</h4>
+                  <div class="flex gap-2">
+                    <button class="quizBtn flex-1 bg-blue-500 text-white py-2 rounded-xl text-sm font-bold" data-domain="algebra" data-level="مبتدئ">مبتدئ</button>
+                    <button class="quizBtn flex-1 bg-blue-600 text-white py-2 rounded-xl text-sm font-bold" data-domain="algebra" data-level="متوسط">متوسط</button>
+                    <button class="quizBtn flex-1 bg-blue-700 text-white py-2 rounded-xl text-sm font-bold" data-domain="algebra" data-level="متقدم">متقدم</button>
+                  </div>
+                </div>
+                <div class="bg-orange-50 p-4 rounded-2xl border-2 border-orange-200">
+                  <h4 class="font-black text-orange-700 mb-3">📐 الهندسة والقياس</h4>
+                  <div class="flex gap-2">
+                    <button class="quizBtn flex-1 bg-orange-500 text-white py-2 rounded-xl text-sm font-bold" data-domain="geometry" data-level="مبتدئ">مبتدئ</button>
+                    <button class="quizBtn flex-1 bg-orange-600 text-white py-2 rounded-xl text-sm font-bold" data-domain="geometry" data-level="متوسط">متوسط</button>
+                    <button class="quizBtn flex-1 bg-orange-700 text-white py-2 rounded-xl text-sm font-bold" data-domain="geometry" data-level="متقدم">متقدم</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div id="leaderboardSection" class="mt-8 bg-white/60 backdrop-blur-sm rounded-3xl p-6 border-2 border-purple-200">
+              <h3 class="text-xl font-black text-center text-purple-900 mb-4">🏆 لوحة الصدارة</h3>
+              <div id="allStudentsRanking" class="space-y-2 text-center text-gray-500 italic">جاري تحميل النتائج...</div>
+              
+              <button id="adminResetBtn" onclick="clearSystemData()" class="hidden w-full mt-4 text-[10px] text-red-400 underline py-2">إعادة ضبط كل النتائج (خاص بالمعلمة)</button>
+            </div>
+          </section>
+
+          <section id="quizScreen" class="hidden slide-in pb-10">
+            <div class="flex items-center justify-between mb-4 bg-white p-3 rounded-xl shadow-sm">
+              <h2 id="quizTitle" class="font-black text-purple-800 text-lg"></h2>
+              <button onclick="location.reload()" class="text-sm font-bold text-red-500 underline">انسحاب</button>
+            </div>
+            <div id="questionsContainer" class="space-y-6"></div>
+            <button id="btnSubmitQuiz" class="w-full mt-8 bg-emerald-600 text-white py-4 rounded-2xl font-black text-xl shadow-lg border-b-4 border-emerald-800 active:scale-95 transition-transform">تأكيد الإجابات ✅</button>
+          </section>
+
+          <section id="resultsScreen" class="hidden slide-in text-center">
+            <div class="bg-white rounded-3xl shadow-2xl p-8 border-t-8 border-yellow-400">
+              <div id="resultEmoji" class="text-7xl mb-4">🌟</div>
+              <h2 class="text-3xl font-black text-purple-900 mb-2">أحسنت يا بطل!</h2>
+              <p id="resultName" class="text-xl font-bold text-purple-600 mb-6"></p>
+              
+              <div class="grid grid-cols-2 gap-4 mb-8">
+                <div class="bg-purple-50 p-4 rounded-2xl">
+                  <p class="text-xs text-gray-500 font-bold mb-1">النتيجة</p>
+                  <p id="scoreDisplay" class="text-3xl font-black text-purple-700"></p>
+                </div>
+                <div class="bg-yellow-50 p-4 rounded-2xl">
+                  <p class="text-xs text-gray-500 font-bold mb-1">النجوم</p>
+                  <div id="starsDisplay" class="text-2xl"></div>
+                </div>
+              </div>
+
+              <div class="space-y-3">
+                <button id="btnBackHome" class="w-full bg-emerald-600 text-white py-3 rounded-xl font-bold shadow-lg">🏆 مشاهدة لوحة الصدارة</button>
+                <button id="btnTakeAnother" class="w-full bg-purple-600 text-white py-3 rounded-xl font-bold shadow-lg">🔁 تحدي مهارة أخرى</button>
+              </div>
+            </div>
+          </section>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-database-compat.js"></script>
+
+  <script>
+    // بيانات Firebase
+    const firebaseConfig = {
+      apiKey: "AIzaSyCnKMPDckU-XmZpblUkV55Im6tYa_VAxT0",
+      authDomain: "nafisproject-48aa3.firebaseapp.com",
+      databaseURL: "https://nafisproject-48aa3-default-rtdb.europe-west1.firebasedatabase.app",
+      projectId: "nafisproject-48aa3",
+      storageBucket: "nafisproject-48aa3.firebasestorage.app",
+      messagingSenderId: "12586578618",
+      appId: "1:12586578618:web:376568ddf058b278b94883",
+      measurementId: "G-BSN3X12HB1"
+    };
+    firebase.initializeApp(firebaseConfig);
+    const database = firebase.database();
+
+    // الأسئلة (مختصرة للأداء)
+    const questions = {
+      numbers: {
+        مبتدئ: [{ q: "في حصالة حمد ٥٧٢ ريالاً. أي رقم في منزلة 'المئات'؟", options: ["٧", "٢", "٥", "لا يوجد"], correct: 2 }],
+        متوسط: [{ q: "قرب الصياد عدد الأسماك (٦٧ سمكة) إلى أقرب 'عشرة'؟", options: ["٦٠", "٦٥", "٧٠", "٨٠"], correct: 2 }],
+        متقدم: [{ q: "رتبت نورة صورها في ٧ صفحات، في كل صفحة ٨ صور. المجموع؟", options: ["٥٤", "٥٦", "٦٤", "٤٩"], correct: 1 }]
+      },
+      algebra: {
+        مبتدئ: [{ q: "تنمو نبتة ٢ سم يومياً. إذا كانت ٨ سم اليوم، كم غداً؟", options: ["٩", "١٠", "١١", "١٢"], correct: 1 }],
+        متوسط: [{ q: "أي جملة توضح أن ترتيب الجمع لا يغير الناتج؟", options: ["٣+٥=٨", "٣+٥=٥+٣", "٣×٥=١٥", "٥-٣=٢"], correct: 1 }],
+        متقدم: [{ q: "النمط: ٢٠، ١٧، ١٤.. ما هي القاعدة؟", options: ["زيادة ٣", "طرح ٣", "زيادة ٢", "طرح ٢"], correct: 1 }]
+      }
+    };
+
+    const domainNames = { numbers: "الأعداد", algebra: "الجبر" };
+    let currentStudent = null;
+    let allStudents = [];
+    let currentQuiz = null;
+    let userAnswers = {};
+    let teacherClicks = 0;
+
+    function init() {
+      // زيارات
+      let v = parseInt(localStorage.getItem('visitCount') || '0') + 1;
+      localStorage.setItem('visitCount', v);
+      document.getElementById('visitCount').textContent = v;
+
+      // جلب البيانات
+      database.ref('students').on('value', (s) => {
+        const data = s.val();
+        allStudents = data ? Object.values(data) : [];
+        updateLeaderboard();
+        updateStats();
+      });
+
+      // تفعيل وضع المعلمة (3 ضغطات على إجمالي النجوم)
+      document.getElementById('starsBox').addEventListener('click', () => {
+        teacherClicks++;
+        if(teacherClicks === 3) {
+          document.getElementById('adminResetBtn').classList.remove('hidden');
+          alert('تم تفعيل وضع المعلمة 🛠️');
+          teacherClicks = 0;
+        }
+      });
+    }
+
+    function updateStats() {
+      const ts = allStudents.reduce((sum, s) => sum + Math.floor(s.total_score / 2), 0);
+      document.getElementById('totalStars').textContent = ts;
+      if (allStudents.length > 0) {
+        const sorted = [...allStudents].sort((a,b) => b.total_score - a.total_score);
+        document.getElementById('lastVisitor').textContent = sorted[0].student_name;
+      }
+    }
+
+    function updateLeaderboard() {
+      const container = document.getElementById('allStudentsRanking');
+      const sorted = [...allStudents].sort((a,b) => b.total_score - a.total_score);
+      if (sorted.length === 0) return;
+      container.innerHTML = sorted.slice(0, 10).map((s, i) => `
+        <div class="ranking-item slide-in">
+          <span class="w-8 h-8 flex items-center justify-center bg-purple-100 rounded-full text-purple-700 font-black ml-3">${i + 1}</span>
+          <div class="flex-1">
+            <p class="font-bold text-gray-800">${s.student_name}</p>
+            <p class="text-[10px] text-gray-500">${s.total_score} نقطة</p>
+          </div>
+          <div class="text-yellow-500">${'⭐'.repeat(Math.min(5, Math.max(1, Math.ceil(s.total_score / 5))))}</div>
+        </div>
+      `).join('');
+    }
+
+    document.getElementById('btnStartQuiz').addEventListener('click', () => {
+      const name = document.getElementById('studentNameInput').value.trim();
+      if (!name) return alert('اكتب اسمك يا بطل!');
+      currentStudent = name;
+      document.getElementById('loginBox').classList.add('hidden');
+      document.getElementById('quizSelection').classList.remove('hidden');
+    });
+
+    document.querySelectorAll('.quizBtn').forEach(btn => {
+      btn.addEventListener('click', () => renderQuiz(btn.dataset.domain, btn.dataset.level));
+    });
+
+    function renderQuiz(domain, level) {
+      currentQuiz = { domain, level }; userAnswers = {};
+      document.getElementById('homeScreen').classList.add('hidden');
+      document.getElementById('quizScreen').classList.remove('hidden');
+      document.getElementById('quizTitle').textContent = `${domainNames[domain]} (${level})`;
+      const qData = questions[domain][level];
+      document.getElementById('questionsContainer').innerHTML = qData.map((q, i) => `
+        <div class="bg-white p-5 rounded-2xl shadow-sm border-2 border-purple-50">
+          <p class="font-black text-purple-900 mb-4">${i+1}. ${q.q}</p>
+          <div class="grid grid-cols-1 gap-2">
+            ${q.options.map((opt, oi) => `
+              <label class="flex items-center p-3 rounded-xl border-2 border-gray-100 option-hover cursor-pointer transition-all">
+                <input type="radio" name="q${i}" value="${oi}" class="w-5 h-5 accent-pink-500" onchange="userAnswers[${i}]=${oi}">
+                <span class="mr-3 font-bold text-gray-700">${opt}</span>
+              </label>
+            `).join('')}
+          </div>
+        </div>
+      `).join('');
+    }
+
+    document.getElementById('btnSubmitQuiz').addEventListener('click', () => {
+      const qData = questions[currentQuiz.domain][currentQuiz.level];
+      if (Object.keys(userAnswers).length < qData.length) return alert('أكمل الحل!');
+      let score = 0; qData.forEach((q, i) => { if (userAnswers[i] === q.correct) score++; });
+      let existing = allStudents.find(s => s.student_name === currentStudent);
+      let newScore = (existing ? existing.total_score : 0) + score;
+      
+      const safeName = currentStudent.replace(/[.#$[\]]/g, "_");
+      database.ref('students/' + safeName).set({ student_name: currentStudent, total_score: newScore }).then(() => {
+          document.getElementById('quizScreen').classList.add('hidden');
+          document.getElementById('resultsScreen').classList.remove('hidden');
+          document.getElementById('resultName').textContent = currentStudent;
+          document.getElementById('scoreDisplay').textContent = `${score} / ${qData.length}`;
+          document.getElementById('starsDisplay').innerHTML = '⭐'.repeat(Math.max(1, Math.ceil(score/1.5)));
+      });
+    });
+
+    document.getElementById('btnBackHome').addEventListener('click', () => location.reload());
+    
+    document.getElementById('btnTakeAnother').addEventListener('click', () => {
+      document.getElementById('resultsScreen').classList.add('hidden');
+      document.getElementById('homeScreen').classList.remove('hidden');
+      document.getElementById('loginBox').classList.add('hidden');
+      document.getElementById('quizSelection').classList.remove('hidden');
+    });
+
+    function clearSystemData() {
+      let pass = prompt("كلمة مرور الإدارة لمسح النتائج:");
+      if (pass === "1234") {
+        if(confirm('سيتم حذف كل النتائج، هل أنتِ متأكدة؟')) {
+          database.ref('students').remove().then(() => location.reload());
+        }
+      } else { alert("خطأ!"); }
+    }
+
+    init();
+  </script>
+ </body>
+</html>
